@@ -380,9 +380,11 @@
   //document.getElementById("myDialog").showModal();
 
   $(document).ready(function(){
+
     //$( "#dialog" ).dialog();
     $("#dialog").dialog({
         modal: true,
+
             width: 600,
             height: 400,
             //overlay: { backgroundColor: "#000", opacity: 0 },
