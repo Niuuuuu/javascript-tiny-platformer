@@ -309,7 +309,7 @@
   //-------------------------------------------------------------------------
   
   function setup(map) {
-	var data    = map.layers[0].data,
+  var data    = map.layers[0].data,
         objects = map.layers[1].objects,
         n, obj, entity;
 
@@ -358,7 +358,7 @@
   
   function frame() {
     fpsmeter.tickStart();
-	now = timestamp();
+  now = timestamp();
     dt = dt + Math.min(1, (now - last) / 1000);
     while(dt > step) {
       dt = dt - step;
@@ -376,13 +376,15 @@
 
   get("level.json", function(req) {
     setup(JSON.parse(req.responseText));
-	console.log("before frame call");
-	//document.getElementById("myDialog").showModal();
+  console.log("before frame call");
+  //document.getElementById("myDialog").showModal();
 
   $(document).ready(function(){
-		//$( "#dialog" ).dialog();
-		$("#dialog").dialog({
-		    modal: true,
+
+    //$( "#dialog" ).dialog();
+    $("#dialog").dialog({
+        modal: true,
+
             width: 600,
             height: 400,
             //overlay: { backgroundColor: "#000", opacity: 0 },
@@ -391,10 +393,9 @@
     });
 
 
-	});
-	
+  });
+  
     
   });
 
 })();
-
