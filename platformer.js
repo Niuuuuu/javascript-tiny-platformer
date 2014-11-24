@@ -83,11 +83,18 @@
   function onkey(ev, key, down) {
     switch(key) {
       case KEY.LEFT:  player.left  = down; ev.preventDefault(); return false;
-      case KEY.RIGHT: player.right = down; ev.preventDefault(); return false;
+      case KEY.RIGHT: player.right = down; console.log("right"); ev.preventDefault(); return false;
       case KEY.SPACE: player.jump  = down; ev.preventDefault(); return false;
+      case KEY.UP:   pause_key_count++; 
+                    if (pause_key_count % 2 == 0) {pause_game = (!pause_game);}
+                     
+                     console.log(pause_game);
     }
   }
-  
+   
+  var pause_game = false;
+  var pause_key_count = 0;
+
   function update(dt) {
     updatePlayer(dt);
     updateMonsters(dt);
@@ -357,6 +364,9 @@
       fpsmeter = new FPSMeter({ decimals: 0, graph: true, theme: 'dark', left: '5px' });
   
   function frame() {
+    
+    
+  if (!pause_game){
     fpsmeter.tickStart();
   now = timestamp();
     dt = dt + Math.min(1, (now - last) / 1000);
@@ -364,11 +374,16 @@
       dt = dt - step;
       update(step);
     }
+    
     render(ctx, counter, dt);
+  
     last = now;
     counter++;
     fpsmeter.tick();
-    requestAnimationFrame(frame, canvas);
+  
+    }
+  requestAnimationFrame(frame, canvas);
+   console.log("in the frame loop");
   }
   
   document.addEventListener('keydown', function(ev) { return onkey(ev, ev.keyCode, true);  }, false);
