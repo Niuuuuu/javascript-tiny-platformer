@@ -99,6 +99,18 @@
     updatePlayer(dt);
     updateMonsters(dt);
     checkTreasure();
+    finishGame();
+  }
+
+
+  function finishGame() {
+    if(player.killed == monsters.length) {
+      if(player.collected == treasure.length) {
+        pause_key_count++;
+        if (pause_key_count % 2 == 0) {pause_game = (!pause_game);}
+          console.log(pause_game);
+      }
+    }
   }
 
   function updatePlayer(dt) {
