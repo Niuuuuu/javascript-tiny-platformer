@@ -439,16 +439,14 @@
 		//$( "#dialog" ).dialog();
 		$("#dialog").dialog({
 		    modal: true,
-            width: 600,
-            height: 400,
-            //overlay: { backgroundColor: "#000", opacity: 0 },
-            //buttons:{ "Close": function() { $(this).dialog("close"); } },
-            close: function(ev, ui) { $(this).remove();frame(); },
-    });
-
-
+            width: 800,
+            height: 600,
+			dialogClass: "no-close",
+			buttons: [{ text: "Start", click: function(ev, ui){ $( this ).dialog( "close" ); frame();}}]
+            //close: function(ev, ui) { $(this).remove();frame(); },
+			
+		});
 	});
-	
     
   });
 

@@ -16,9 +16,17 @@
     #instructions   { font-style: italic; color: #999; font-size: 9pt; margin-left: 1em; margin-top: 0.5em; }
     #instructions b { color: #DDD; }
 	
-	.ui-widget {background: #53777A;}
-	.ui-widget-header {background: #53777A; border:none; color:gold;}
+	@font-face      {font-family: JennaSue; src: url("../JennaSue.ttf"); }
+	
+	.ui-widget         { background: #333; border-radius: 0; }
+	.ui-widget-header  { background: #333; border:none; color:#000; font-family:JennaSue; font-size: 4em; border-radius: 0;}
 	.ui-widget-overlay { opacity: 0;}
+	
+	#dialog                          { color:#ECD078; background: #333; }
+	.ui-dialog .ui-dialog-titlebar   { padding: .6em .3em .1em; }
+	.ui-dialog-titlebar-close        { visibility: hidden; }
+	.ui-dialog-buttonpane { background: #333; }
+
     
 	@media screen and (min-width:     0px) and (min-height:    0px) { #platformer { width:  512px; height: 384px; font-size:  7pt; } } /* block = 16 */
     @media screen and (min-width:   840px) and (min-height:  530px) { #platformer { width:  640px; height: 480px; font-size:  9pt; } } /* block = 20 */
@@ -39,15 +47,11 @@
         Sorry, this example cannot be run because your browser does not support the &lt;canvas&gt; element
       </div>
     </canvas>
-<!--
-	moving instructions to start screen
-    <div id="instructions">
-      <b>LEFT/RIGHT</b> to move, <b>SPACE</b> to jump, collect gold and jump on monsters.
-    </div>
--->
-	<div id="dialog" title="Tiny Platformer">
+
+	<div id="dialog" title="Tiny P latformer">
 		<p>Collect all the gold and squash monsters to win!</p>
 		<p>Use the <b>LEFT/RIGHT</b> arrows and <b>SPACE</b> to jump.</p>
+		<p>Use the <b>UP</b> arrow to pause &amp resume the game.</p>
 	</div>
   </div>
   <script src="fpsmeter.min.js"></script>
