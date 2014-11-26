@@ -57,7 +57,7 @@
       IMPULSE  = 1500,    // default player jump impulse
       COLOR    = { BLACK: '#000000', YELLOW: '#ECD078', BRICK: '#D95B43', PINK: '#C02942', PURPLE: '#542437', GREY: '#333', SLATE: '#53777A', GOLD: 'gold' },
       COLORS   = [ COLOR.YELLOW, COLOR.BRICK, COLOR.PINK, COLOR.PURPLE, COLOR.GREY ],
-      KEY      = { SPACE: 32, LEFT: 37, UP: 38, RIGHT: 39, DOWN: 40 };
+      KEY      = { SPACE: 32, LEFT: 37, UP: 38, RIGHT: 39, DOWN: 40, KEY_P :80 };
       
   var fps      = 60,
       step     = 1/fps,
@@ -87,7 +87,7 @@
       case KEY.LEFT:  player.left  = down; ev.preventDefault(); return false;
       case KEY.RIGHT: player.right = down; console.log("right"); ev.preventDefault(); return false;
       case KEY.SPACE: player.jump  = down; ev.preventDefault(); return false;
-      case KEY.UP:   pause_key_count++; 
+      case KEY.KEY_P:   pause_key_count++; 
                     if (pause_key_count % 2 == 0) {pause_game = (!pause_game);}
                      
                      console.log(pause_game);
