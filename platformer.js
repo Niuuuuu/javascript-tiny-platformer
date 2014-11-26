@@ -98,12 +98,15 @@
   var pause_key_count = 0;
 
   function update(dt) {
+  if (!pause_game){
     updatePlayer(dt);
     updateMonsters(dt);
 	//
 	updateSliders(dt);
     checkTreasure();
     finishGame();
+  }
+  
   }
 
 
@@ -436,13 +439,15 @@
   function frame() {
     
     
-  if (!pause_game){
+  
     fpsmeter.tickStart();
   now = timestamp();
     dt = dt + Math.min(1, (now - last) / 1000);
     while(dt > step) {
       dt = dt - step;
       update(step);
+	  
+	   console.log("in the update loop");
     }
     
     render(ctx, counter, dt);
@@ -451,7 +456,7 @@
     counter++;
     fpsmeter.tick();
   
-    }
+    
   requestAnimationFrame(frame, canvas);
    console.log("in the frame loop");
   }
