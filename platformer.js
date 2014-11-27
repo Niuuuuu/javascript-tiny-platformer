@@ -111,7 +111,6 @@ $(document).ready(function(){
       case KEY.LEFT:  player.left  = down; ev.preventDefault(); return false;
       case KEY.RIGHT: player.right = down;  ev.preventDefault(); return false;
       case KEY.SPACE: player.jump  = down; ev.preventDefault(); return false;
-      case KEY.UP:    end_game(); ev.preventDefault(); return false;
       case KEY.KEY_P:   pause_key_count++; 
                     if (pause_key_count % 2 == 0) {pause_game = (!pause_game);}
                      
