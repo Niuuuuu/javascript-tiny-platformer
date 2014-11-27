@@ -69,7 +69,6 @@
       monsters = [],
       treasure = [],
       cells    = [];
-	  //
 	  sliders = [];
   
   var t2p      = function(t)     { return t*TILE;                  },
@@ -91,8 +90,6 @@ $(document).ready(function(){
 
             width: 600,
             height: 400,
-            //overlay: { backgroundColor: "#000", opacity: 0 },
-            //buttons:{ "Close": function() { $(this).dialog("close"); } },
             
     });
 
@@ -129,7 +126,6 @@ $(document).ready(function(){
   if (!pause_game){
     updatePlayer(dt);
     updateMonsters(dt);
-	//
 	updateSliders(dt);
     checkTreasure();
     finishGame();
@@ -177,7 +173,6 @@ $(document).ready(function(){
 		if(overlap(player.x, player.y, TILE, TILE, sliders[n].x, sliders[n].y, 5 * TILE, TILE)){
 			if((player.dy > 0) && (sliders[n].y - player.y > TILE/2)){
 				//should land on moving slider
-				//console.log("land");
 				player.y = t2p(p2t(player.y));       // clamp the y position to avoid falling into platform below
 				player.dy = 0;            			 // stop downward velocity
 				player.falling = false;   			 // no longer falling
@@ -186,7 +181,9 @@ $(document).ready(function(){
 				player.dx = sliders[n].dx;
 			}else{
 				//should bounce down
-				console.log("bounce");
+				player.dy = -player.dy;            // stop upward velocity
+				player.falling = true;
+
 			}
 		}
 	}
@@ -381,8 +378,6 @@ $(document).ready(function(){
 	for(n = 0, max = sliders.length ; n < max; n++){
 		slider = sliders[n];
 		for(k = 0; k < slider.size; k++){
-			//console.log("test");
-			//this is being called
 			ctx.fillRect(slider.x + TILE * k + (slider.dx * dt), slider.y + (slider.dy * dt), TILE, TILE)
 		}
 	}
@@ -444,10 +439,8 @@ $(document).ready(function(){
     entity.monster  = obj.type == "monster";
     entity.player   = obj.type == "player";
     entity.treasure = obj.type == "treasure";
-	//
 	entity.slider   = obj.type == "slider";
 	entity.size     = obj.properties.size;
-	//
     entity.left     = obj.properties.left;
     entity.right    = obj.properties.right;
     entity.start    = { x: obj.x, y: obj.y }
@@ -464,17 +457,13 @@ $(document).ready(function(){
       fpsmeter = new FPSMeter({ decimals: 0, graph: true, theme: 'dark', left: '5px' });
   
   function frame() {
-    
-    
-  
     fpsmeter.tickStart();
-  now = timestamp();
+    now = timestamp();
     dt = dt + Math.min(1, (now - last) / 1000);
     while(dt > step) {
       dt = dt - step;
       update(step);
-	  
-	   //console.log("in the update loop");
+
     }
     
     render(ctx, counter, dt);
@@ -482,10 +471,7 @@ $(document).ready(function(){
     last = now;
     counter++;
     fpsmeter.tick();
-  
-    
-  requestAnimationFrame(frame, canvas);
-   //console.log("in the frame loop");
+	requestAnimationFrame(frame, canvas);
   }
   
   document.addEventListener('keydown', function(ev) { return onkey(ev, ev.keyCode, true);  }, false);
@@ -493,30 +479,16 @@ $(document).ready(function(){
 
   get("level.json", function(req) {
     setup(JSON.parse(req.responseText));
-
-  console.log("before frame call");
-  //document.getElementById("myDialog").showModal();
-
-
-
-
-  $(document).ready(function(){
-
-    //$( "#dialog" ).dialog();
-    $("#dialog").dialog({
-        modal: true,
-
-            width: 600,
-            height: 400,
-            //overlay: { backgroundColor: "#000", opacity: 0 },
-            //buttons:{ "Close": function() { $(this).dialog("close"); } },
-            close: function(ev, ui) { /*$(this).remove();*/frame(); },
-    });
-
-
-  });
   
-    
+	$(document).ready(function(){
+
+		$("#dialog").dialog({
+			modal: true,
+			width: 600,
+			height: 400,
+			close: function(ev, ui) { /*$(this).remove();*/frame(); },
+		});
+	  });   
   });
 
 })();
