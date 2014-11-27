@@ -77,6 +77,33 @@
       cell     = function(x,y)   { return tcell(p2t(x),p2t(y));    },
       tcell    = function(tx,ty) { return cells[tx + (ty*MAP.tw)]; };
   
+
+  function end_game()
+{
+
+console.log("in end game ()");
+
+$(document).ready(function(){
+
+    
+    $("#dialog2").dialog({
+        modal: true,
+
+            width: 600,
+            height: 400,
+            //overlay: { backgroundColor: "#000", opacity: 0 },
+            //buttons:{ "Close": function() { $(this).dialog("close"); } },
+            
+    });
+
+
+
+  }); 
+
+
+
+}
+
   
   //-------------------------------------------------------------------------
   // UPDATE LOOP
@@ -85,8 +112,9 @@
   function onkey(ev, key, down) {
     switch(key) {
       case KEY.LEFT:  player.left  = down; ev.preventDefault(); return false;
-      case KEY.RIGHT: player.right = down; console.log("right"); ev.preventDefault(); return false;
+      case KEY.RIGHT: player.right = down;  ev.preventDefault(); return false;
       case KEY.SPACE: player.jump  = down; ev.preventDefault(); return false;
+      case KEY.UP:    end_game(); ev.preventDefault(); return false;
       case KEY.KEY_P:   pause_key_count++; 
                     if (pause_key_count % 2 == 0) {pause_game = (!pause_game);}
                      
@@ -113,9 +141,8 @@
   function finishGame() {
     if(player.killed == monsters.length) {
       if(player.collected == treasure.length) {
-        pause_key_count++;
-        if (pause_key_count % 2 == 0) {pause_game = (!pause_game);}
-          console.log(pause_game);
+        pause_game=true;
+        end_game();
       }
     }
   }
@@ -447,7 +474,7 @@
       dt = dt - step;
       update(step);
 	  
-	   console.log("in the update loop");
+	   //console.log("in the update loop");
     }
     
     render(ctx, counter, dt);
@@ -458,7 +485,7 @@
   
     
   requestAnimationFrame(frame, canvas);
-   console.log("in the frame loop");
+   //console.log("in the frame loop");
   }
   
   document.addEventListener('keydown', function(ev) { return onkey(ev, ev.keyCode, true);  }, false);
@@ -471,6 +498,8 @@
   //document.getElementById("myDialog").showModal();
 
 
+
+
   $(document).ready(function(){
 
     //$( "#dialog" ).dialog();
@@ -481,7 +510,7 @@
             height: 400,
             //overlay: { backgroundColor: "#000", opacity: 0 },
             //buttons:{ "Close": function() { $(this).dialog("close"); } },
-            close: function(ev, ui) { $(this).remove();frame(); },
+            close: function(ev, ui) { /*$(this).remove();*/frame(); },
     });
 
 
