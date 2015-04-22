@@ -88,8 +88,10 @@ $(document).ready(function(){
     $("#dialog2").dialog({
         modal: true,
 
-            width: 600,
-            height: 400,
+            width: 500,
+            height: 300,
+
+
             
     });
 
@@ -476,15 +478,19 @@ $(document).ready(function(){
   document.addEventListener('keydown', function(ev) { return onkey(ev, ev.keyCode, true);  }, false);
   document.addEventListener('keyup',   function(ev) { return onkey(ev, ev.keyCode, false); }, false);
 
+  
+
   get("level.json", function(req) {
     setup(JSON.parse(req.responseText));
   
 	$(document).ready(function(){
+    
 
-		$("#dialog").dialog({
+		$("#dialog1").dialog({
 			modal: true,
 			width: 600,
 			height: 400,
+
 			close: function(ev, ui) { /*$(this).remove();*/frame(); },
 		});
 	  });   
