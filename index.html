@@ -10,10 +10,12 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
   
   <style>
+
+
     body            { background: #111; }
     #platformer     { margin: 1em auto; position: relative; width: 512px; height: 384px; }
     #canvas         { display: inline-block; width: 100%; height: 100%; }
-    #instructions   { font-style: italic; color: #999; font-size: 9pt; margin-left: 1em; margin-top: 0.5em; }
+    #instructions   { font-style: italic; color: #999; font-size: 0pt; margin-left: 1em; margin-top: 0.5em; }
     #instructions b { color: #DDD; }
 
   
@@ -34,22 +36,17 @@
 
 <body>
 
-  <div id="platformer">
+  <div id ="instructions">
 
-    <canvas id="canvas">
-      <div class="unsupported">
-        Sorry, this example cannot be run because your browser does not support the &lt;canvas&gt; element
-      </div>
-    </canvas>
-
-
-
-  <div id="dialog" title="Tiny Platformer">
+  
+  <div id="dialog1" title="Tiny Platformer">
     <p>Collect all the gold and squash monsters to win!</p>
     <p>Use the <b>LEFT/RIGHT</b> arrows to control the player</p>
-	<p> press <b>SPACE</b> to jump.</p>
-	<p>press <b>P</b> to pause/resume the game </p>
+  <p> press <b>SPACE</b> to jump.</p>
+  <p>press <b>P</b> to pause/resume the game </p>
   </div>
+  
+
 
   <div id="dialog2" title="Congratulations!!!">
     <p><b>You have beat the game !!</b> </p>
@@ -57,7 +54,22 @@
     <p><b>Thank you for playing</b> </p>
   </div> 
 
-  </div>
+  <div>  
+
+  <div id="platformer">
+
+
+  
+  <canvas id="canvas">
+      <div class="unsupported">
+        Sorry, this example cannot be run because your browser does not support the &lt;canvas&gt; element
+      </div>
+    </canvas>
+
+
+
+</div>
+
   <script src="fpsmeter.min.js"></script>
   <script src="platformer.js"></script>
 
